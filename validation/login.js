@@ -1,26 +1,22 @@
 import validator from "validator"
 
 export default data => {
-    let errors = {}
+  let errors = {}
 
-    if (!('email' in data)) data.email = ''
-    if (!('password' in data)) data.password = ''
+  if (!('email' in data)) data.email = ''
+  if (!('password' in data)) data.password = ''
 
-    if (validator.isEmpty(data.email)) {
-        errors.email = "Email is required"
-    }
+  if (validator.isEmpty(data.email)) {
+    errors.email = "Email is required"
+  }
 
-    if (!validator.isEmail(data.email)) {
-        errors.email = "Email is invalid"
-    }
+  if (validator.isEmpty(data.password)) {
+    errors.password = "Password is required"
+  }
 
-    if (validator.isEmpty(data.password)) {
-        errors.password = "Password is required"
-    }
-
-    return {
-        errors,
-        isValid: !Object.keys(errors).length
-    }
+  return {
+    errors,
+    isValid: !Object.keys(errors).length
+  }
 
 }

@@ -4,8 +4,11 @@
   "description": "Social Network",
   "main": "index.js",
   "scripts": {
+    "client-install": "npm install --prefix client",
     "start": "node index.js",
-    "test": "nodemon index.js"
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
