@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types";
-import classnames from "classnames";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
+import TextFieldGroup from '../common/TextFieldGroup'
 
 const Login = (props) => {
   const [formData, setFormData] = useState({
@@ -45,32 +45,26 @@ const Login = (props) => {
             <h1 className="display-4 text-center">Log In</h1>
             <p className="lead text-center">Sign in to your Social Media account</p>
             <form onSubmit={handleSubmit} noValidate>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.email
-                  })}
-                  placeholder="Email Address"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                />
-                {formData.errors.email && (<small className="invalid-feedback">{formData.errors.email}</small>)}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.password
-                  })}
-                  placeholder="Password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
-                />
-                {formData.errors.password && (<small className="invalid-feedback">{formData.errors.password}</small>)}
-              </div>
+
+              <TextFieldGroup
+                placeholder="Email Address"
+                name="email"
+                value={formData.email}
+                error={formData.errors.email}
+                type="email"
+                handleChange={handleChange}
+              />
+
+              <TextFieldGroup
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                error={formData.errors.password}
+                type="password"
+                handleChange={handleChange}
+              />
+
+
               <input type="submit" className="btn btn-info btn-block mt-4" />
             </form>
           </div>

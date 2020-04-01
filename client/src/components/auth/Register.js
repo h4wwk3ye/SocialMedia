@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import PropTypes from "prop-types";
 import { withRouter } from 'react-router-dom'
-import classnames from "classnames"
 import { connect } from 'react-redux'
 import { registerUser } from "../../actions/authActions";
+import TextFieldGroup from '../common/TextFieldGroup'
 
 const Register = (props) => {
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -51,59 +50,41 @@ const Register = (props) => {
             <h1 className="display-4 text-center">Sign Up</h1>
             <p className="lead text-center">Create your Social Media account</p>
             <form onSubmit={handleSubmit} noValidate>
-              <div className="form-group">
-                <input
-                  type="text"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.name
-                  })}
-                  placeholder="Name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                />
-                {formData.errors.name && (<small className="invalid-feedback">{formData.errors.name}</small>)}
-              </div>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.email
-                  })}
-                  placeholder="Email Address"
-                  value={formData.email}
-                  name="email"
-                  onChange={handleChange}
-                />
-                {formData.errors.email && (<small className="invalid-feedback">{formData.errors.email}</small>)}
-                <small className="form-text text-muted">This site uses Gravatar so if you want a profile image, use a Gravatar email</small>
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.password
-                  })}
-                  placeholder="Password"
-                  value={formData.password}
-                  name="password"
-                  onChange={handleChange}
-                />
-                {formData.errors.password && (<small className="invalid-feedback">{formData.errors.password}</small>)}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className={classnames("form-control form-control-lg", {
-                    'is-invalid': formData.errors.password2
-                  })}
-                  placeholder="Confirm Password"
-                  value={formData.password2}
-                  name="password2"
-                  onChange={handleChange}
-                />
-                {formData.errors.password2 && (<small className="invalid-feedback">{formData.errors.password2}</small>)}
-              </div>
+              <TextFieldGroup
+                placeholder="Name"
+                name="name"
+                value={formData.name}
+                error={formData.errors.name}
+                type="text"
+                handleChange={handleChange}
+              />
+
+              <TextFieldGroup
+                placeholder="Email Address"
+                name="email"
+                value={formData.email}
+                error={formData.errors.email}
+                type="email"
+                handleChange={handleChange}
+              />
+
+              <TextFieldGroup
+                placeholder="Password"
+                name="password"
+                value={formData.password}
+                error={formData.errors.password}
+                type="password"
+                handleChange={handleChange}
+              />
+
+              <TextFieldGroup
+                placeholder="Confirm Password"
+                name="password2"
+                value={formData.password2}
+                error={formData.errors.password2}
+                type="password"
+                handleChange={handleChange}
+              />
               <input
                 type="submit"
                 className="btn btn-info btn-block mt-4"
@@ -120,7 +101,7 @@ const Register = (props) => {
 Register.propTypes = {
   registerUser: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
 }
 
 const mapStateToProps = (state) => ({

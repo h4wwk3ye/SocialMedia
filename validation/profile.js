@@ -5,7 +5,6 @@ export default data => {
 
     if (!('handle' in data)) data.handle = ''
     if (!('status' in data)) data.status = ''
-    if (!('skills' in data)) data.skills = ''
 
     if (validator.isEmpty(data.handle)) {
         errors.handle = 'Profile handle is requried'
@@ -16,26 +15,26 @@ export default data => {
     }
 
     if (validator.isEmpty(data.status)) {
-        errors.status = "Status is required"
+        errors.status = "Status field is required"
     }
 
-    if (('website' in data) && !validator.isURL(data.website)) {
+    if (('website' in data) && (data.website !== '') && !validator.isURL(data.website)) {
         errors.website = 'Not a valid URL'
     }
 
-    if (('youtube' in data) && !validator.isURL(data.youtube)) {
+    if (('youtube' in data) && (data.youtube !== '') && !validator.isURL(data.youtube)) {
         errors.youtube = 'Not a valid URL'
     }
-    if (('twitter' in data) && !validator.isURL(data.twitter)) {
+    if (('twitter' in data) && (data.twitter !== '') && !validator.isURL(data.twitter)) {
         errors.twitter = 'Not a valid URL'
     }
-    if (('facebook' in data) && !validator.isURL(data.facebook)) {
+    if (('facebook' in data) && (data.facebook !== '') && !validator.isURL(data.facebook)) {
         errors.facebook = 'Not a valid URL'
     }
-    if (('linkedin' in data) && !validator.isURL(data.linkedin)) {
+    if (('linkedin' in data) && (data.linkedin !== '') && !validator.isURL(data.linkedin)) {
         errors.linkedin = 'Not a valid URL'
     }
-    if (('instagram' in data) && !validator.isURL(data.instagram)) {
+    if (('instagram' in data) && (data.instagram !== '') && !validator.isURL(data.instagram)) {
         errors.instagram = 'Not a valid URL'
     }
 

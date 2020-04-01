@@ -3,14 +3,12 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER } from "./types";
 
-
 // Register User
 export const registerUser = (userData, history) => dispath => {
   axios
-    .get('/api/users/register', userData)
-    .then(res => {
-      history.push('/login')
-    })
+    .post('/api/users/register', userData)
+    .then(res => history.push('/login')
+    )
     .catch(err => {
       dispath({
         type: GET_ERRORS,
@@ -20,9 +18,9 @@ export const registerUser = (userData, history) => dispath => {
 }
 
 // Login  - get user token
-
 export const loginUser = (userData) => dispath => {
-  axios.post('/api/users/login', userData)
+  axios
+    .post('/api/users/login', userData)
     .then(res => {
       // save token
       const { token } = res.data
@@ -44,7 +42,6 @@ export const loginUser = (userData) => dispath => {
 }
 
 // set logged in user
-
 export const setCurrentUser = (decoded) => {
   return {
     type: SET_CURRENT_USER,
@@ -53,7 +50,6 @@ export const setCurrentUser = (decoded) => {
 }
 
 // log out
-
 export const logoutUser = () => dispatch => {
   localStorage.removeItem('jwtToken')
   setAuthToken(false);
